@@ -18,12 +18,11 @@ def clean_horse_kicks(horse_kick_df: pd.DataFrame) -> pd.DataFrame:
         missing_columns = {"year", "corps"} - set(horse_kick_df.columns)
         raise MissingColumnException(f"{missing_columns} not in Data Frame.")
 
-    years_in_bounds = 1701 <= horse_kick_df["year"] <= 1919
-    if not all(1701 <= horse_kick_df["year"] <= 1919):
+    years_in_bounds = horse_kick_df["year"].between(1701, 1919, inclusive=True)
+    if not all(years_in_bounds):
         out_of_bounds_years = horse_kick_df.loc[years_in_bounds, "year"]
         warnings.warn(f"Years out of bounds: {out_of_bounds_years}",
                       YearOutBoundsWarning)
-        raise YearOutBoundsWarning(f"Years out of bounds: {out_of_bounds_years}")
 
     corps_known = horse_kick_df["corps"].isin(prussian_corps)
     if not all(horse_kick_df["corps"].isin(prussian_corps)):
