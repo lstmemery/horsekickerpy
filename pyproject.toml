@@ -17,7 +17,7 @@ homepage = "https://github.com/sdispater/poetry"
 keywords = ['packaging', 'poetry']
 
 [tool.poetry.dependencies]
-python = "^3.4"  # Compatible python versions must be declared here
+python = "^3.6"  # Compatible python versions must be declared here
 toml = "^0.9"
 
 # Python specific dependencies with prereleases allowed
@@ -25,6 +25,8 @@ toml = "^0.9"
 # Git dependencies
 #cleo = { git = "https://github.com/sdispater/cleo.git", branch = "master" }
 
+pandas = "^0.24.2"
+statsmodels = "^0.9.0"
 # Optional dependencies (extras)
 #pendulum = { version = "^1.4", optional = true }
 
