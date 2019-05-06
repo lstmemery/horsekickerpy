@@ -6,8 +6,10 @@ from sklearn.base import BaseEstimator, RegressorMixin
 from sklearn.preprocessing import OneHotEncoder
 from sklearn.pipeline import make_pipeline
 from functools import partial
-from horsekickpy.horsekick import clean_horse_kicks
+from horsekickerpy.horsekick import clean_horse_kicks
 import numpy as np
+from sklearn.externals import joblib
+
 
 df = pd.read_csv("data/VonBort.csv")
 
@@ -40,4 +42,5 @@ horse_kick_pipeline.fit(np.asarray(clean_df), np.asarray(df["deaths"]))
 
 print(horse_kick_pipeline.predict(clean_df))
 
+joblib.dump(horse_kick_pipeline, "results/horse_kick_model.pkl")
 

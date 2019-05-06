@@ -1,6 +1,6 @@
 from pandas.util.testing import assert_frame_equal
 
-from horsekickpy.horsekick import clean_horse_kicks, MissingColumnException
+from horsekickerpy.horsekick import clean_horse_kicks, MissingColumnException
 import pytest
 import pandas as pd
 
