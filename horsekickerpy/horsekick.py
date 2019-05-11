@@ -1,14 +1,18 @@
 import pandas as pd
 import warnings
 
+
 class MissingColumnException(Exception):
     pass
+
 
 class YearOutBoundsWarning(Warning):
     pass
 
+
 class UnknownCorpsWarning(Warning):
     pass
+
 
 def clean_horse_kicks(horse_kick_df: pd.DataFrame) -> pd.DataFrame:
     prussian_corps = {"G", "I", "II", "III", "IV", "V", "VI",
