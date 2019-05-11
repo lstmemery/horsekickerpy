@@ -1,6 +1,7 @@
-from flask import Flask, request, jsonify
 import pandas as pd
+from flask import Flask, jsonify, request
 from sklearn.externals import joblib
+
 from horsekickerpy.horsekick import clean_horse_kicks
 from horsekickerpy.wrapper import SMWrapper
 
