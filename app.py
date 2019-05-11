@@ -24,5 +24,6 @@ def test():
     return jsonify(request.get_json())
 
 
+#curl -H "Content-Type: application/json" --data @predict.json http://localhost:5000/predict
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5000, debug=True)
