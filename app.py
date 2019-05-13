@@ -1,14 +1,17 @@
 import pandas as pd
 from flask import Flask, jsonify, request
+from flask_restplus import Api
 from sklearn.externals import joblib
 
 from horsekickerpy.horsekick import clean_horse_kicks
-from horsekickerpy.wrapper import SMWrapper
+
+api = Api()
 
 app = Flask(__name__)
+api.init_app(app)
 
 
-@app.route('/predict', methods=['POST'])
+@api.route('/predict', methods=['POST'])
 def predict():
 
     data = request.get_json()
@@ -20,11 +23,11 @@ def predict():
     return jsonify(list(model.predict(clean_df).round(3)))
 
 
-@app.route('/test', methods=['POST'])
+@api.route('/test', methods=['POST'])
 def test():
     return jsonify(request.get_json())
 
 
 #curl -H "Content-Type: application/json" --data @predict.json http://localhost:5000/predict
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    api.run(host='0.0.0.0', port=5000, debug=True)

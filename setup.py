@@ -8,5 +8,6 @@ setup(
     license='MIT',
     author='Matthew Emery',
     author_email='me@matthewemery.ca',
-    description='Predict horse kick deaths at scale.'
+    description='Predict horse kick deaths at scale.',
+    install_requires=['flask', 'pandas', 'scikit-learn', "flask_restplus"]
 )
