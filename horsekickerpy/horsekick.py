@@ -1,5 +1,6 @@
-import pandas as pd
 import warnings
+
+import pandas as pd
 
 
 class MissingColumnException(Exception):
@@ -25,8 +26,10 @@ def clean_horse_kicks(horse_kick_df: pd.DataFrame) -> pd.DataFrame:
     years_in_bounds = horse_kick_df["year"].between(1701, 1919, inclusive=True)
     if not all(years_in_bounds):
         out_of_bounds_years = horse_kick_df.loc[years_in_bounds, "year"]
-        warnings.warn(f"Years out of bounds: {out_of_bounds_years}",
-                      YearOutBoundsWarning)
+        warnings.warn(
+            f"Years out of bounds: {out_of_bounds_years}",
+            YearOutBoundsWarning,
+        )
 
     corps_known = horse_kick_df["corps"].isin(prussian_corps)
     if not all(horse_kick_df["corps"].isin(prussian_corps)):

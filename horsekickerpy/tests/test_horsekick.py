@@ -1,8 +1,8 @@
+import pandas as pd
+import pytest
 from pandas.util.testing import assert_frame_equal
 
-from horsekickerpy.horsekick import clean_horse_kicks, MissingColumnException
-import pytest
-import pandas as pd
+from horsekickerpy.horsekick import MissingColumnException, clean_horse_kicks
 
 
 def test_clean_horse_kicks_no_columns():
