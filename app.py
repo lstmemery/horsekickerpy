@@ -1,9 +1,10 @@
 import pandas as pd
 from flask import Flask, jsonify, request
-from flask_restplus import Api
+from flask_restplus import Api, Resource
 from sklearn.externals import joblib
 
 from horsekickerpy.horsekick import clean_horse_kicks
+from horsekickerpy.wrapper import SMWrapper
 
 api = Api()
 
@@ -11,23 +12,28 @@ app = Flask(__name__)
 api.init_app(app)
 
 
-@api.route('/predict', methods=['POST'])
-def predict():
+@api.route('/predict')
+class Predict(Resource):
 
-    data = request.get_json()
-    df = pd.DataFrame(data)
-    clean_df = clean_horse_kicks(df)
+    def post(self):
+        data = request.get_json()
+        df = pd.DataFrame(data)
+        print(df)
 
-    model = joblib.load("results/horse_kick_model.pkl")
+        clean_df = clean_horse_kicks(df)
 
-    return jsonify(list(model.predict(clean_df).round(3)))
+        model = joblib.load("results/horse_kick_model.pkl")
+
+        return jsonify(list(model.predict(clean_df).round(3)))
 
 
-@api.route('/test', methods=['POST'])
-def test():
-    return jsonify(request.get_json())
+@api.route('/test')
+class Test(Resource):
+
+    def get(self):
+        return {"Hello": "World"}
 
 
 #curl -H "Content-Type: application/json" --data @predict.json http://localhost:5000/predict
 if __name__ == "__main__":
-    api.run(host='0.0.0.0', port=5000, debug=True)
+    app.run(host='0.0.0.0', port=5000, debug=True)
