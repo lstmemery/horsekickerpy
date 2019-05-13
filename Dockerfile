@@ -9,6 +9,8 @@ COPY pyproject.* .
 RUN poetry install -n
 
 COPY horsekickerpy/ horsekickerpy/
-COPY app.py app.py
 
-CMD ["poetry", "run", "python", "app.py"]
+ADD setup.py
+RUN poetry run python setup.py install
+
+CMD ["poetry", "run", "python", "horsekickerpy/app.py"]

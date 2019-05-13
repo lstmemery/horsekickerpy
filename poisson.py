@@ -24,4 +24,4 @@ horse_kick_pipeline.fit(np.asarray(clean_df), np.asarray(df["deaths"]))
 
 print(horse_kick_pipeline.predict(clean_df))
 
-joblib.dump(horse_kick_pipeline, "results/horse_kick_model.pkl")
+joblib.dump(horse_kick_pipeline, "model/horse_kick_model.pkl")
