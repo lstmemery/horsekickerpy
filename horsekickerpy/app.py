@@ -18,11 +18,10 @@ class Predict(Resource):
     def post(self):
         data = request.get_json()
         df = pd.DataFrame(data)
-        print(df)
 
         clean_df = clean_horse_kicks(df)
 
-        model = joblib.load("model/horse_kick_model.pkl")
+        model = joblib.load("horsekickerpy/model/horse_kick_model.pkl")
 
         return jsonify(list(model.predict(clean_df).round(3)))
 
